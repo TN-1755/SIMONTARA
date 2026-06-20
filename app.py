@@ -191,7 +191,7 @@ st.markdown("""
     color:#d1d5db;
     margin-bottom:4px;
 '>
-Sistem Monitoring Tagihan dan Realisasi Anggaran SENTRA "INSYAF" DI MEDAN
+Sistem Monitoring Tagihan dan Realisasi Anggaran 
 </div>
 """, unsafe_allow_html=True)
 
