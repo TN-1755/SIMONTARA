@@ -184,6 +184,7 @@ st.markdown("""
 📊 SIMONTARA
 </h1>
 """, unsafe_allow_html=True)
+st.caption("🚀 DEPLOY TEST 20 JUNI 2026 - 22:15")
 
 st.markdown("""
 <div style='
