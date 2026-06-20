@@ -4,6 +4,8 @@ import plotly.express as px
 from datetime import datetime, timedelta
 import gspread
 from google.oauth2.service_account import Credentials
+st.write("HALO DARI APP.PY")
+st.stop()
 
 now = datetime.utcnow() + timedelta(hours=7)
 
