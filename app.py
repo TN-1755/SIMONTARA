@@ -538,23 +538,24 @@ with col3:
 
     detail_df = pd.DataFrame({
         "Kluster": raw_sp2d.iloc[22:31, 13].values,
-        "51": clean_numeric(raw_sp2d.iloc[22:31, 14]),
-        "52": clean_numeric(raw_sp2d.iloc[22:31, 15]),
-        "57": clean_numeric(raw_sp2d.iloc[22:31, 16])
+        "51 (Belanja Pegawai)": clean_numeric(raw_sp2d.iloc[22:31, 14]),
+        "52 (Belanja Barang Jasa)": clean_numeric(raw_sp2d.iloc[22:31, 15]),
+        "57 (Belanja Bansos)": clean_numeric(raw_sp2d.iloc[22:31, 16])
     })
 
     detail_df = detail_df[
         detail_df["Kluster"].notna()
     ]
 
-    detail_df = detail_df.sort_values(
-        "Total",
-        ascending=False
+    detail_df["Total"] = (
+        detail_df["51 (Belanja Pegawai)"] +
+        detail_df["52 (Belanja Barang Jasa)"] +
+        detail_df["57 (Belanja Bansos)"]
     )
 
     detail_df_format = detail_df.copy()
 
-    for col in ["51", "52", "57", "Total"]:
+    for col in detail_df_format.columns[1:]:
 
         detail_df_format[col] = detail_df_format[col].apply(
             lambda x:
@@ -562,37 +563,6 @@ with col3:
             if x > 0
             else "-"
         )
-
-    st.dataframe(
-    detail_df_format,
-    use_container_width=True,
-    hide_index=True,
-    height=320,
-    column_config={
-        "Kluster": st.column_config.TextColumn(
-            "Kluster",
-            width="medium"
-        ),
-        "51": st.column_config.TextColumn(
-            "51",
-            width="small"
-        ),
-        "52": st.column_config.TextColumn(
-            "52",
-            width="small"
-        ),
-        "57": st.column_config.TextColumn(
-            "57",
-            width="small"
-        ),
-        "Total": st.column_config.TextColumn(
-            "Total",
-            width="medium"
-        )
-    }
-)
-
-
 
 with col4:
 
