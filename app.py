@@ -547,12 +547,6 @@ with col3:
         detail_df["Kluster"].notna()
     ]
 
-    detail_df["Total"] = (
-        detail_df["51"] +
-        detail_df["52"] +
-        detail_df["57"]
-    )
-
     detail_df = detail_df.sort_values(
         "Total",
         ascending=False
@@ -570,15 +564,34 @@ with col3:
         )
 
     st.dataframe(
-        detail_df_format,
-        use_container_width=True,
-        hide_index=True,
-        height=320
-    )
+    detail_df_format,
+    use_container_width=True,
+    hide_index=True,
+    height=320,
+    column_config={
+        "Kluster": st.column_config.TextColumn(
+            "Kluster",
+            width="medium"
+        ),
+        "51": st.column_config.TextColumn(
+            "51",
+            width="small"
+        ),
+        "52": st.column_config.TextColumn(
+            "52",
+            width="small"
+        ),
+        "57": st.column_config.TextColumn(
+            "57",
+            width="small"
+        ),
+        "Total": st.column_config.TextColumn(
+            "Total",
+            width="medium"
+        )
+    }
+)
 
-    st.caption(
-        "📌 Realisasi per kluster berdasarkan jenis belanja"
-    )
 
 
 with col4:
