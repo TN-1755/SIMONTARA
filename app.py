@@ -553,12 +553,6 @@ with col3:
         detail_df["57"]
     )
 
-    # Urutkan berdasarkan total terbesar
-    detail_df = detail_df.sort_values(
-        by="Total",
-        ascending=False
-    )
-
     detail_df_format = detail_df.copy()
 
     for col in ["51", "52", "57", "Total"]:
