@@ -536,56 +536,114 @@ with col3:
 
     st.subheader("📋 Detail Realisasi per Kluster")
 
-heatmap_df = pd.DataFrame({
-    "Kluster": raw_sp2d.iloc[22:31, 13].values,
-    "51": clean_numeric(raw_sp2d.iloc[22:31, 14]),
-    "52": clean_numeric(raw_sp2d.iloc[22:31, 15]),
-    "57": clean_numeric(raw_sp2d.iloc[22:31, 16])
-})
+    detail_df = pd.DataFrame({
+        "Kluster": raw_sp2d.iloc[22:31, 13].values,
+        "51": clean_numeric(raw_sp2d.iloc[22:31, 14]),
+        "52": clean_numeric(raw_sp2d.iloc[22:31, 15]),
+        "57": clean_numeric(raw_sp2d.iloc[22:31, 16])
+    })
 
-heatmap_df = heatmap_df[
-    heatmap_df["Kluster"].notna()
-]
+    detail_df = detail_df[
+        detail_df["Kluster"].notna()
+    ]
 
-heatmap_df = heatmap_df.set_index("Kluster")
+    max51 = detail_df["51"].max()
+    max52 = detail_df["52"].max()
+    max57 = detail_df["57"].max()
 
-display_df = heatmap_df.copy()
+    html = """
+    <style>
+    .heat-table{
+        width:100%;
+        border-collapse:collapse;
+        font-size:14px;
+        color:white;
+    }
 
-for col in display_df.columns:
-    display_df[col] = display_df[col].apply(
-        lambda x: (
-            f"{int(x):,}".replace(",", ".")
-            if x > 0 else "-"
-        )
+    .heat-table th{
+        background:#1E40AF;
+        color:white;
+        padding:8px;
+        text-align:center;
+    }
+
+    .heat-table td{
+        padding:8px;
+        border:1px solid rgba(255,255,255,0.08);
+        text-align:center;
+    }
+
+    .heat-table td:first-child{
+        text-align:left;
+        font-weight:bold;
+    }
+
+    .total-row{
+        background:#1E3A8A;
+        font-weight:bold;
+    }
+    </style>
+
+    <table class="heat-table">
+    <tr>
+        <th>Kluster</th>
+        <th>51</th>
+        <th>52</th>
+        <th>57</th>
+    </tr>
+    """
+
+    for _, row in detail_df.iterrows():
+
+        is_total = str(row["Kluster"]).strip().upper() == "TOTAL"
+
+        row_class = "total-row" if is_total else ""
+
+        def blue_cell(v):
+            alpha = (v/max51) if max51 > 0 else 0
+            return f"background:rgba(59,130,246,{alpha});"
+
+        def green_cell(v):
+            alpha = (v/max52) if max52 > 0 else 0
+            return f"background:rgba(34,197,94,{alpha});"
+
+        def orange_cell(v):
+            alpha = (v/max57) if max57 > 0 else 0
+            return f"background:rgba(249,115,22,{alpha});"
+
+        val51 = "-" if row["51"] == 0 else f"{int(row['51']):,}".replace(",", ".")
+        val52 = "-" if row["52"] == 0 else f"{int(row['52']):,}".replace(",", ".")
+        val57 = "-" if row["57"] == 0 else f"{int(row['57']):,}".replace(",", ".")
+
+        html += f"""
+        <tr class="{row_class}">
+            <td>{row['Kluster']}</td>
+
+            <td style="{blue_cell(row['51'])}">
+                {val51}
+            </td>
+
+            <td style="{green_cell(row['52'])}">
+                {val52}
+            </td>
+
+            <td style="{orange_cell(row['57'])}">
+                {val57}
+            </td>
+
+        </tr>
+        """
+
+    html += "</table>"
+
+    st.markdown(
+        html,
+        unsafe_allow_html=True
     )
 
-styled_df = (
-    heatmap_df.style
-    .background_gradient(
-        cmap="Blues",
-        subset=["51"]
+    st.caption(
+        "💡 Warna semakin terang menunjukkan nilai yang semakin besar"
     )
-    .background_gradient(
-        cmap="Greens",
-        subset=["52"]
-    )
-    .background_gradient(
-        cmap="Oranges",
-        subset=["57"]
-    )
-    .format(
-        lambda x:
-        f"{x:,.0f}".replace(",", ".")
-        if x > 0
-        else "-"
-    )
-)
-
-st.dataframe(
-    styled_df,
-    use_container_width=True,
-    height=320
-)
 
 
 
