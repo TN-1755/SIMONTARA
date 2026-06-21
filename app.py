@@ -553,19 +553,6 @@ with col3:
         detail_df["57 (Belanja Bansos)"]
     )
 
-    total_row = pd.DataFrame([{
-        "Kluster": "TOTAL",
-        "51 (Belanja Pegawai)": detail_df["51 (Belanja Pegawai)"].sum(),
-        "52 (Belanja Barang Jasa)": detail_df["52 (Belanja Barang Jasa)"].sum(),
-        "57 (Belanja Bansos)": detail_df["57 (Belanja Bansos)"].sum(),
-        "Total": detail_df["Total"].sum()
-    }])
-
-    detail_df = pd.concat(
-        [detail_df, total_row],
-        ignore_index=True
-    )
-
     detail_df_format = detail_df.copy()
 
     for col in detail_df_format.columns[1:]:
@@ -577,6 +564,12 @@ with col3:
             else "-"
         )
 
+    detail_df = detail_df.sort_values(
+        "Total",
+        ascending=False
+    )
+
+    
     st.markdown("""
     <style>
 
@@ -601,9 +594,6 @@ with col3:
         height=320
     )
 
-    st.caption(
-        "📌 Realisasi per kluster berdasarkan jenis belanja 51, 52, dan 57"
-    )
 
 with col4:
 
