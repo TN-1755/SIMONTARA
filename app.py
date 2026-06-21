@@ -214,7 +214,6 @@ st.markdown("""
 📊 SIMONTARA
 </h1>
 """, unsafe_allow_html=True)
-st.caption("🚀 DEPLOY TEST 20 JUNI 2026 - 22:15")
 
 st.markdown("""
 <div style='
@@ -232,7 +231,7 @@ st.markdown("""
     color:#9ca3af;
     margin-bottom:15px;
 '>
-Monitoring Realisasi Anggaran secara cepat, tepat, dan akuntabel
+Monitoring Realisasi Anggaran secara Cepat, Tepat, Transparan dan Akuntabel
 </div>
 """, unsafe_allow_html=True)
 
@@ -349,7 +348,7 @@ st.markdown("---")
 st.subheader("📊 Grafik RPD vs Realisasi")
 
 st.caption(
-    "Perbandingan target RPD dan realisasi per jenis belanja"
+    "Perbandingan target RPD dan Realisasi per Jenis Belanja"
 )
 
 grafik_df = pd.DataFrame({
@@ -424,9 +423,6 @@ with col1:
     .astype(str)
     .str.extract(r'(\d+)')[0]
 )
-
-    st.write("HASIL BERSIH")
-    st.write(persentase_raw)
 
     capaian_df = pd.DataFrame({
     "Kluster": raw_sp2d.iloc[11:19, 13].values,
@@ -541,9 +537,7 @@ with col3:
 
     st.subheader("📋 Detail Realisasi per Kluster")
 
-    st.caption(
-    "Realisasi anggaran berdasarkan akun belanja 51, 52 dan 57"
-)
+
     detail_df = pd.DataFrame({
     "Kluster": raw_sp2d.iloc[22:31, 13].values,
     "51": clean_numeric(raw_sp2d.iloc[22:31, 14]),
@@ -597,7 +591,7 @@ with col4:
     color:white;
     margin-bottom:10px;
     ">
-    Komposisi Realisasi
+    📊 Komposisi Realisasi
     </h2>
     """, unsafe_allow_html=True)
 
