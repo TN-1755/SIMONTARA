@@ -569,23 +569,21 @@ with col3:
         ascending=False
     )
 
-    
     st.markdown("""
-    <style>
+<style>
 
-    [data-testid="stDataFrame"] {
-        border-radius:12px;
-        overflow:hidden;
-    }
+/* Kolom pertama (Kluster) tetap rata kiri */
+[data-testid="stDataFrame"] td:first-child {
+    text-align: left !important;
+}
 
-    [data-testid="stDataFrame"] thead tr th {
-        background:#1E40AF !important;
-        color:white !important;
-        font-weight:bold !important;
-    }
+/* Kolom angka rata kanan */
+[data-testid="stDataFrame"] td:not(:first-child) {
+    text-align: right !important;
+}
 
-    </style>
-    """, unsafe_allow_html=True)
+</style>
+""", unsafe_allow_html=True)
 
     st.dataframe(
         detail_df_format,
