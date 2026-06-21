@@ -536,67 +536,58 @@ with col3:
 
     st.subheader("📋 Detail Realisasi per Kluster")
 
-
-    detail_df = pd.DataFrame({
+heatmap_df = pd.DataFrame({
     "Kluster": raw_sp2d.iloc[22:31, 13].values,
     "51": clean_numeric(raw_sp2d.iloc[22:31, 14]),
     "52": clean_numeric(raw_sp2d.iloc[22:31, 15]),
     "57": clean_numeric(raw_sp2d.iloc[22:31, 16])
 })
-    detail_df = detail_df.dropna(how="all")
 
-    detail_df = detail_df[
-        detail_df["Kluster"].notna()
+heatmap_df = heatmap_df[
+    heatmap_df["Kluster"].notna()
 ]
 
-    detail_df.loc[
-    detail_df["Kluster"] == "Total",
-    "Kluster"
-] = "🏆 TOTAL"
+heatmap_df = heatmap_df.set_index("Kluster")
 
-    # Format angka tabel
-    detail_df_format = detail_df.copy()
+display_df = heatmap_df.copy()
 
-    for col in ["51", "52", "57"]:
-        detail_df_format[col] = detail_df_format[col].apply(
-            lambda x:
+for col in display_df.columns:
+    display_df[col] = display_df[col].apply(
+        lambda x: (
             f"{int(x):,}".replace(",", ".")
-            if pd.notna(x) and x != 0
-            else "-"
+            if x > 0 else "-"
+        )
     )
 
-    st.markdown("""
-    <style>
-    [data-testid="stDataFrame"] thead tr th {
-        background-color: #1E3A8A !important;
-        color: white !important;
-        font-weight: bold !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-    styled_df = detail_df_format.style\
-    .set_properties(**{
-        'background-color': '#111827',
-        'color': 'white'
-    })\
-    .set_table_styles([
-        {
-            'selector':'th',
-            'props':[
-                ('background-color','#1E40AF'),
-                ('color','white'),
-                ('font-weight','bold')
-            ]
-        }
-    ])
+styled_df = (
+    heatmap_df.style
+    .background_gradient(
+        cmap="Blues",
+        subset=["51"]
+    )
+    .background_gradient(
+        cmap="Greens",
+        subset=["52"]
+    )
+    .background_gradient(
+        cmap="Oranges",
+        subset=["57"]
+    )
+    .format(
+        lambda x:
+        f"{x:,.0f}".replace(",", ".")
+        if x > 0
+        else "-"
+    )
+)
 
 st.dataframe(
     styled_df,
     use_container_width=True,
-    hide_index=True,
-    height=360
+    height=320
 )
+
+
 
 with col4:
 
