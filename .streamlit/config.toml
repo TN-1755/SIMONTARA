@@ -1,0 +1,10 @@
+[theme]
+primaryColor="#005BAC"
+backgroundColor="#FFFFFF"
+secondaryBackgroundColor="#F6F8FC"
+textColor="#262730"
+font="sans serif"
+
+[server]
+runOnSave = true
+fileWatcherType = "poll"
