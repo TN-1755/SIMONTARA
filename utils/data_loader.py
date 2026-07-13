@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import gspread
 from google.oauth2.service_account import Credentials
-
 from utils.config import SPREADSHEET_ID
 
 SCOPES = [
@@ -26,7 +25,6 @@ def get_sheet():
     spreadsheet = connect_google_sheet()
     return spreadsheet.worksheet("Data")
 
-@st.cache_data(ttl=60)
 
 def parse_number(value):
     """
@@ -130,12 +128,30 @@ def load_chart_kluster():
     data = values[1:]
 
     df = pd.DataFrame(data, columns=header)
-    df.columns = df.columns.str.strip()
 
     # Bersihkan spasi pada nama kolom
     df.columns = df.columns.str.strip()
 
     # Hapus baris TOTAL
     df = df[df["KLUSTER"] != "TOTAL"]
+
+    return df.reset_index(drop=True)
+
+@st.cache_data(ttl=60)
+def load_komposisi_realisasi():
+
+    ws = get_sheet()
+
+    values = ws.get("B8:D12")
+
+    header = values[0]
+    data = values[1:]
+
+    df = pd.DataFrame(data, columns=header)
+
+    df.columns = df.columns.str.strip()
+
+    # Hapus baris TOTAL
+    df = df[df["Akun"] != "TOTAL"]
 
     return df.reset_index(drop=True)

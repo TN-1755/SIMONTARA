@@ -7,14 +7,15 @@ from utils.data_loader import (
     load_tabel_kluster,
     load_detail_kluster,
     load_chart_kluster,
+    load_komposisi_realisasi,
 )
 from components.kpi_cards import show_kpi_cards
 from components.header import show_header
 from components.deviasi import show_deviasi
 from components.monitoring_status import show_monitoring_status
 from components.charts import (
-    show_realisasi_chart,
-    show_deviasi_chart,
+    show_comparison_chart,
+    show_donut_chart,
 )
 
 
@@ -40,15 +41,7 @@ df_chart = load_chart_kluster()
 st.write(df_chart.columns.tolist())
 st.dataframe(df_chart)
 
-top_left, top_right = st.columns(2)
-
-with top_left:
-    show_realisasi_chart(df_chart)
-
-with top_right:
-    show_deviasi_chart(df_chart)
-
-st.divider()
+show_comparison_chart(df_chart)
 
 # =====================================
 # DETAIL
@@ -72,4 +65,6 @@ with bottom_right:
 
     st.subheader("🍩 Komposisi Realisasi")
 
-    st.info("Coming Soon...")
+    df_komposisi = load_komposisi_realisasi()
+
+    show_donut_chart(df_komposisi)
