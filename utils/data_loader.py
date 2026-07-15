@@ -151,7 +151,14 @@ def load_komposisi_realisasi():
 
     df.columns = df.columns.str.strip()
 
-    # Hapus baris TOTAL
-    df = df[df["Akun"] != "TOTAL"]
+    # Hapus TOTAL
+    df = df[df["Akun"] != "TOTAL"].reset_index(drop=True)
 
-    return df.reset_index(drop=True)
+    # REALISASI menjadi angka
+    df["REALISASI"] = (
+        df["REALISASI"]
+        .str.replace(".", "", regex=False)
+        .astype(int)
+    )
+
+    return df

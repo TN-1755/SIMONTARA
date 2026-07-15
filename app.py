@@ -13,6 +13,7 @@ from components.kpi_cards import show_kpi_cards
 from components.header import show_header
 from components.deviasi import show_deviasi
 from components.monitoring_status import show_monitoring_status
+from components.detail_table import show_detail_table
 from components.charts import (
     show_comparison_chart,
     show_donut_chart,
@@ -31,17 +32,18 @@ show_kpi_cards(kpi)
 show_deviasi(kpi["selisih"])
 show_monitoring_status(kpi["selisih"])
 
-st.divider()
+
 
 # =====================================
 # GRAFIK
 # =====================================
 
+st.subheader("📊 Perbandingan Capaian & Kekurangan Realisasi")
+
 df_chart = load_chart_kluster()
-st.write(df_chart.columns.tolist())
-st.dataframe(df_chart)
 
 show_comparison_chart(df_chart)
+
 
 # =====================================
 # DETAIL
@@ -55,11 +57,9 @@ with bottom_left:
 
     df_detail = load_detail_kluster()
 
-    st.dataframe(
-        df_detail,
-        use_container_width=True,
-        hide_index=True,
-    )
+    st.write(df_detail.columns.tolist())
+
+    show_detail_table(df_detail)
 
 with bottom_right:
 

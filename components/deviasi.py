@@ -11,20 +11,26 @@ def show_deviasi(deviasi):
 
     st.markdown(
         f"""
-<div style="border:2px solid {border_color};
-            border-radius:20px;
-            padding:25px;
-            margin:20px 0;
-            text-align:center;
-            background:#111827;">
+<div class="card deviasi-card"
+     style="
+        border:2px solid {border_color};
+        border-radius:20px;
+        padding:25px;
+        margin:20px 0;
+        text-align:center;
+        background:#111827;
+">
 
 <h3 style="color:{border_color};
            margin-bottom:10px;">
 ⚠️ DEVIASI
 </h3>
 
-<h1 style="color:white;
-           margin:0;">
+<h1 class="deviasi-value"
+    style="
+        color:white;
+        margin:0;
+">
 {format_rupiah(deviasi)}
 </h1>
 
