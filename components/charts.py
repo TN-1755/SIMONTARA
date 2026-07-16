@@ -169,8 +169,12 @@ def show_comparison_chart(df):
 
     # Warna
     chart["COLOR"] = chart["SELISIH"].apply(
-        lambda x: "#22C55E" if x >= 0 else "#EF4444"
+    lambda x: (
+        "#EF4444" if x < 0
+        else "#3B82F6" if x == 0
+        else "#22C55E"
     )
+)
 
     fig = make_subplots(
     rows=1,
@@ -180,10 +184,10 @@ def show_comparison_chart(df):
     column_widths=[0.44, 0.12, 0.44],
 
     subplot_titles=(
-        "Capaian (%)",
-        "",
-        "Kekurangan Realisasi",
-    ),
+    "📈 CAPAIAN REALISASI",
+    "",
+    "📉 KEKURANGAN REALISASI",
+),
 )
 
     fig.add_trace(
@@ -223,10 +227,10 @@ def show_comparison_chart(df):
             textposition="middle center",
 
             textfont=dict(
-                color="white",
-                size=18,
-                family="Segoe UI",
-            ),
+            color="white",
+            size=19,
+            family="Segoe UI Semibold",
+        ),
 
             hoverinfo="skip",
             showlegend=False,
@@ -251,7 +255,7 @@ def show_comparison_chart(df):
 
             textfont=dict(
                 color="white",
-                size=14,
+                size=15,
             ),
 
             hovertemplate="<b>%{y}</b><br>Rp %{text}<extra></extra>",
@@ -271,7 +275,7 @@ def show_comparison_chart(df):
         margin=dict(
         l=0,
         r=0,
-        t=55,
+        t=30,
         b=10,
     ),
 
@@ -328,14 +332,14 @@ def show_comparison_chart(df):
 
     for annotation in fig.layout.annotations:
 
-        annotation.font.size = 15
-        annotation.font.family = "Segoe UI"
+        annotation.font.size = 19
+        annotation.font.family = "Segoe UI Black"
 
-        if annotation.text == "Capaian (%)":
-            annotation.font.color = "#60A5FA"
+    if annotation.text == "📈 CAPAIAN REALISASI":
+        annotation.font.color = "#93C5FD"
 
-        elif annotation.text == "Kekurangan Realisasi":
-            annotation.font.color = "#FCA5A5"
+    elif annotation.text == "📉 KEKURANGAN REALISASI":
+        annotation.font.color = "#FCA5A5"
 
     st.plotly_chart(
         fig,

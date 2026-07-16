@@ -10,31 +10,39 @@ def show_deviasi(deviasi):
     border_color = "#ef4444" if deviasi < 0 else "#22c55e"
 
     st.markdown(
-        f"""
+    f"""
 <div class="card deviasi-card"
      style="
         border:2px solid {border_color};
-        border-radius:20px;
-        padding:25px;
-        margin:20px 0;
+        border-radius:18px;
+        padding:10px 20px;
+        margin:14px 0;
         text-align:center;
         background:#111827;
 ">
 
-<h3 style="color:{border_color};
-           margin-bottom:10px;">
+<div
+style="
+font-size:18px;
+font-weight:700;
+color:{border_color};
+margin-bottom:4px;
+">
 ⚠️ DEVIASI
-</h3>
+</div>
 
-<h1 class="deviasi-value"
-    style="
-        color:white;
-        margin:0;
+<div
+class="deviasi-value"
+style="
+font-size:40px;
+font-weight:700;
+color:white;
+line-height:1.1;
 ">
 {format_rupiah(deviasi)}
-</h1>
+</div>
 
 </div>
 """,
-        unsafe_allow_html=True,
-    )
+    unsafe_allow_html=True,
+)

@@ -25,29 +25,42 @@ def show_monitoring_status(deviasi):
         border = "#64748b"
         title = "🟡 SESUAI TARGET"
 
-    st.subheader("🚨 Status Monitoring")
+    st.markdown("""
+<div style="
+font-size:26px;
+font-weight:700;
+color:white;
+margin-bottom:6px;
+">
+🚨 Status Monitoring
+</div>
+""", unsafe_allow_html=True)
 
     st.markdown(
-        f"""
+    f"""
 <div class="card status-card"
      style="
 background:{bg};
-border-left:8px solid {border};
-padding:20px;
-border-radius:15px;
-margin-bottom:30px;
+border-left:6px solid {border};
+padding:10px 18px;
+border-radius:18px;
+margin-bottom:14px;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:42px;
 ">
 
-<h3 style="
+<div
+style="
 color:white;
-margin:0;
 font-size:22px;
 font-weight:700;
 ">
 {title}
-</h3>
+</div>
 
 </div>
 """,
-        unsafe_allow_html=True
-    )
+    unsafe_allow_html=True,
+)

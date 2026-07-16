@@ -50,76 +50,64 @@ h3{
 }
                 
 /* =====================================
-   KPI CARD
+   KPI CARD HOVER
 ===================================== */
 
-div[data-testid="stMetric"]{
-    background:#111c36;
-    border:1px solid #274472;
-    border-radius:18px;
-    padding:22px;
-    text-align:center;
-
-    box-shadow:0 6px 18px rgba(0,0,0,.25);
+.kpi-card{
 
     transition:
         transform .25s ease,
         box-shadow .25s ease,
         border-color .25s ease;
 
-    cursor:pointer;
-}
-                
-div[data-testid="stMetric"]:hover{
+    box-shadow:
+        0 6px 18px rgba(0,0,0,.25);
 
-    transform:translateY(-6px) scale(1.02);
+    cursor:pointer;
+
+}
+
+.kpi-card:hover{
+
+    transform:translateY(-5px);
 
     border-color:#60A5FA;
 
     box-shadow:
-        0 18px 40px rgba(0,0,0,.45),
-        0 0 25px rgba(96,165,250,.25);
+        0 14px 32px rgba(0,0,0,.40),
+        0 0 18px rgba(96,165,250,.18);
 
 }
-
-div[data-testid="stMetricValue"]{
-    justify-content:center;
-    color:white !important;
-    font-size:34px;
+                
+.kpi-value{
 
     transition:transform .25s ease;
+
 }
 
-div[data-testid="stMetric"]:hover div[data-testid="stMetricValue"]{
-    transform:scale(1.08);
-}
-
-div[data-testid="stMetric"] *{
-    transition:all .25s ease;
-}
-
-div[data-testid="stMetric"]:hover div[data-testid="stMetricValue"]{
+.kpi-card:hover .kpi-value{
 
     transform:scale(1.05);
 
 }
-                
-                
+                     
 /* Label KPI */
 
 div[data-testid="stMetricLabel"]{
-    justify-content:center;
+    justify-content:center !important;
+}
+
+div[data-testid="stMetricLabel"] > div{
+    justify-content:center !important;
+}
+
+div[data-testid="stMetricLabel"] p{
+    font-size:18px !important;
+    font-weight:800 !important;
     color:#9fb3d9 !important;
-    font-weight:700;
+    letter-spacing:.6px;
 }
 
-/* Nilai KPI */
-
-div[data-testid="stMetricValue"]{
-    justify-content:center;
-    color:white !important;
-    font-size:34px;
-}
 
 /* =====================================
    DATAFRAME
@@ -255,7 +243,9 @@ hr{
         0 0 18px rgba(79,141,253,.18);
 
 }
-                       
+
+                
+                                      
 </style>
 """, unsafe_allow_html=True)
 

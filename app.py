@@ -19,11 +19,9 @@ from components.charts import (
     show_donut_chart,
 )
 
-
+load_css()
 
 show_header()
-
-load_css()
 
 kpi = load_kpi()
 
@@ -38,8 +36,6 @@ show_monitoring_status(kpi["selisih"])
 # GRAFIK
 # =====================================
 
-st.subheader("📊 Perbandingan Capaian & Kekurangan Realisasi")
-
 df_chart = load_chart_kluster()
 
 show_comparison_chart(df_chart)
@@ -53,17 +49,35 @@ bottom_left, bottom_right = st.columns(2)
 
 with bottom_left:
 
-    st.subheader("📋 Detail Realisasi per Kluster")
+    st.markdown("""
+<div style="
+font-size:22px;
+font-weight:700;
+color:white;
+margin-bottom:10px;
+">
+📋 DETAIL REALISASI
+</div>
+""", unsafe_allow_html=True)
 
     df_detail = load_detail_kluster()
-
-    st.write(df_detail.columns.tolist())
 
     show_detail_table(df_detail)
 
 with bottom_right:
 
-    st.subheader("🍩 Komposisi Realisasi")
+    st.markdown("""
+<div style="
+font-size:22px;
+font-weight:700;
+color:white;
+text-align:center;
+margin-top:5px;
+margin-bottom:18px;
+">
+🍩 KOMPOSISI REALISASI
+</div>
+""", unsafe_allow_html=True)
 
     df_komposisi = load_komposisi_realisasi()
 

@@ -3,84 +3,109 @@ import streamlit as st
 
 def show_detail_table(df):
 
-    html = """
+    df = df[df["KLUSTER"] != "TOTAL"].reset_index(drop=True)
+
+    css = """
     <style>
 
     .simontara-table{
         width:100%;
         border-collapse:collapse;
-        font-family:'Segoe UI',sans-serif;
+        font-family:"Segoe UI",sans-serif;
         font-size:14px;
         overflow:hidden;
         border-radius:12px;
     }
 
     .simontara-table th{
-        background:#1E293B;
-        color:white;
-        padding:12px;
-        text-align:center;
-        font-weight:600;
-        border-bottom:1px solid #334155;
+    background:#223454;
+    color:white;
+    padding:10px 10px;
+    text-align:center;
+    font-weight:700;
+    border-bottom:1px solid #3B82F6;
     }
 
     .simontara-table td{
-        background:#111827;
+        padding:8px 12px;
         color:white;
-        padding:10px 12px;
-        border-bottom:1px solid rgba(255,255,255,.06);
+        border-bottom:1px solid rgba(255,255,255,.05);
+    }
+
+    .simontara-table tbody tr:nth-child(odd){
+        background:#111827;
+    }
+
+    .simontara-table tbody tr:nth-child(even){
+        background:#172033;
+    }
+
+    .simontara-table tbody tr:hover{
+        background:#22314F;
     }
 
     .simontara-table td:first-child{
         text-align:left;
         font-weight:600;
+        white-space:nowrap;
     }
 
     .simontara-table td:not(:first-child){
         text-align:right;
     }
 
-    .simontara-table tr:nth-child(even) td{
-        background:#172033;
+    .total-header,
+    .total-column{
+        border-left:3px solid #22C55E;
     }
 
-    .simontara-table tr:hover td{
-        background:#22314F;
+    .total-header{
+        color:#BBF7D0;
     }
 
-    .total-row td{
-        background:#0F766E !important;
-        font-weight:bold;
-        color:white;
+    .total-column{
+        color:#BBF7D0;
+        font-weight:700;
     }
 
     </style>
-
-    <table class="simontara-table">
-
-        <thead>
-            <tr>
     """
 
-    for col in df.columns:
-        html += f"<th>{col}</th>"
+    header = "<tr>"
 
-    html += "</tr></thead><tbody>"
+    for col in df.columns:
+
+        if col == "TOTAL":
+            header += '<th class="total-header">TOTAL</th>'
+        else:
+            header += f"<th>{col}</th>"
+
+    header += "</tr>"
+
+    body = ""
 
     for _, row in df.iterrows():
 
-        cls = ""
+        body += "<tr>"
 
-        if str(row.iloc[0]).upper() == "TOTAL":
-            cls = "total-row"
+        for i, value in enumerate(row):
 
-        html += f'<tr class="{cls}">'
+            if i == len(df.columns) - 1:
+                body += f'<td class="total-column">{value}</td>'
+            else:
+                body += f"<td>{value}</td>"
 
-        for value in row:
-            html += f"<td>{value}</td>"
+        body += "</tr>"
 
-        html += "</tr>"
+    table = f"""
+<table class="simontara-table">
+    <thead>
+        {header}
+    </thead>
+    <tbody>
+        {body}
+    </tbody>
+</table>
+"""
 
-    html += "</tbody></table>"
-
-    st.markdown(html, unsafe_allow_html=True)
+    st.markdown(css + table, unsafe_allow_html=True)

@@ -10,14 +10,15 @@ def show_header():
     jam = now.strftime("%H:%M WIB")
 
     st.markdown(
-        f"""
+    f"""
 <div style="
 background:linear-gradient(135deg,#1e3a8a,#0f172a);
-padding:28px 32px;
+padding:18px 28px;
 border-radius:20px;
 border:1px solid #274472;
 box-shadow:0 10px 28px rgba(0,0,0,.35);
-margin-bottom:25px;
+margin-top:20px;
+margin-bottom:18px;
 ">
 
 <div style="
@@ -29,23 +30,35 @@ align-items:center;
 <div>
 
 <div style="
-font-size:34px;
-font-weight:700;
-color:white;
+display:flex;
+align-items:center;
+gap:14px;
 ">
 
-📊 SIMONTARA
+<div style="
+font-size:50px;
+line-height:1;
+">
+📊
+</div>
+
+<div style="
+font-size:44px;
+font-weight:800;
+color:white;
+line-height:1;
+">
+SIMONTARA
+</div>
 
 </div>
 
 <div style="
-margin-top:6px;
-font-size:20px;
+margin-top:4px;
+font-size:17px;
 color:#cbd5e1;
 ">
-
 Sistem Monitoring Tagihan dan Realisasi Anggaran
-
 </div>
 
 </div>
@@ -55,37 +68,19 @@ text-align:right;
 ">
 
 <div style="
-display:inline-block;
-padding:6px 14px;
-border-radius:999px;
-background:#14532d;
-color:#bbf7d0;
-font-size:13px;
+font-size:18px;
 font-weight:600;
-margin-bottom:10px;
-">
-
-🟢 GOOGLE SHEETS
-
-</div>
-
-<div style="
-font-size:15px;
 color:white;
-font-weight:600;
 ">
-
 {tanggal}
-
 </div>
 
 <div style="
-font-size:14px;
+font-size:17px;
 color:#cbd5e1;
+margin-top:2px;
 ">
-
 {jam}
-
 </div>
 
 </div>
@@ -94,5 +89,5 @@ color:#cbd5e1;
 
 </div>
 """,
-        unsafe_allow_html=True,
-    )
+    unsafe_allow_html=True,
+)
