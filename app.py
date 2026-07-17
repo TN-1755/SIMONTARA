@@ -1,4 +1,22 @@
 import streamlit as st
+import streamlit.components.v1 as components
+
+st.set_page_config(
+    page_title="SIMONTARA",
+    page_icon="📊",
+    layout="wide",
+    initial_sidebar_state="collapsed",
+)
+
+components.html("""
+<script>
+var meta = document.createElement('meta');
+meta.name = "viewport";
+meta.content =
+"width=1400, initial-scale=0.25, maximum-scale=5.0, user-scalable=yes";
+document.head.appendChild(meta);
+</script>
+""", height=0)
 
 from components.styles import load_css
 from utils.data_loader import (
@@ -45,7 +63,7 @@ show_comparison_chart(df_chart)
 # DETAIL
 # =====================================
 
-bottom_left, bottom_right = st.columns(2)
+bottom_left, bottom_right = st.columns([2.3, 1])
 
 with bottom_left:
 
@@ -82,3 +100,17 @@ margin-bottom:18px;
     df_komposisi = load_komposisi_realisasi()
 
     show_donut_chart(df_komposisi)
+
+
+st.markdown("""
+<div style="
+margin-top:35px;
+padding-top:18px;
+border-top:1px solid rgba(96,165,250,.18);
+text-align:center;
+color:#7f94bb;
+font-size:13px;
+">
+Designed & Developed by <b>Axel Sensei</b> • SIMONTARA V2.0
+</div>
+""", unsafe_allow_html=True)

@@ -13,11 +13,11 @@ def show_header():
     f"""
 <div style="
 background:linear-gradient(135deg,#1e3a8a,#0f172a);
-padding:18px 28px;
+padding:16px 28px;
 border-radius:20px;
 border:1px solid #274472;
 box-shadow:0 10px 28px rgba(0,0,0,.35);
-margin-top:20px;
+margin-top:32px;
 margin-bottom:18px;
 ">
 
@@ -36,15 +36,16 @@ gap:14px;
 ">
 
 <div style="
-font-size:50px;
+font-size:44px;
 line-height:1;
 ">
 📊
 </div>
 
 <div style="
-font-size:44px;
+font-size:40px;
 font-weight:800;
+letter-spacing:1px;
 color:white;
 line-height:1;
 ">
@@ -55,7 +56,8 @@ SIMONTARA
 
 <div style="
 margin-top:4px;
-font-size:17px;
+font-size:16px;
+letter-spacing:.3px;
 color:#cbd5e1;
 ">
 Sistem Monitoring Tagihan dan Realisasi Anggaran
@@ -68,7 +70,7 @@ text-align:right;
 ">
 
 <div style="
-font-size:18px;
+font-size:16px;
 font-weight:600;
 color:white;
 ">
@@ -76,7 +78,7 @@ color:white;
 </div>
 
 <div style="
-font-size:17px;
+font-size:15px;
 color:#cbd5e1;
 margin-top:2px;
 ">

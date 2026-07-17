@@ -11,7 +11,11 @@ def show_kpi_card(icon, title, value):
     f"""
 <div class="kpi-card"
 style="
-background:#111c36;
+background:linear-gradient(
+180deg,
+#162445 0%,
+#111c36 100%
+);
 border:1px solid #274472;
 border-radius:18px;
 padding:18px 22px;

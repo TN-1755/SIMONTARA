@@ -10,15 +10,87 @@ def load_css():
 ===================================== */
 
 .stApp{
-    background:#0f172a;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(59,130,246,.10),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at top right,
+            rgba(14,165,233,.08),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            180deg,
+            #0f172a,
+            #111827
+        );
+
     color:white;
+
 }
 
-.block-container{
-    padding-top:2rem;
-    padding-bottom:2rem;
-    max-width:1400px;
+.main .block-container{
+
+    width:1400px !important;
+    max-width:1400px !important;
+    min-width:1400px !important;
+
+    margin:auto;
+
+    padding-top:0 !important;
+    padding-left:2rem;
+    padding-right:2rem;
+
 }
+                
+section.main > div{
+    padding-top:0 !important;
+}
+                
+[data-testid="stAppViewContainer"]{
+    padding-top:0 !important;
+}                
+
+section[data-testid="stMain"]{
+    padding-top:0 !important;
+}
+
+section[data-testid="stMain"] > div{
+    padding-top:0 !important;
+}
+
+div[data-testid="stMainBlockContainer"]{
+    padding-top:0 !important;
+}
+                
+                
+[data-testid="stHorizontalBlock"]{
+
+    display:flex !important;
+
+    flex-wrap:nowrap !important;
+
+    align-items:stretch !important;
+
+    gap:1rem;
+
+}
+
+[data-testid="column"]{
+
+    flex:1 1 0 !important;
+
+    min-width:0 !important;
+
+    overflow:visible !important;
+
+}
+                
 
 /* =====================================
    TEXT
@@ -59,23 +131,43 @@ h3{
         transform .25s ease,
         box-shadow .25s ease,
         border-color .25s ease;
-
     box-shadow:
-        0 6px 18px rgba(0,0,0,.25);
+        0 6px 18px rgba(0,0,0,.25),
+        0 0 12px rgba(59,130,246,.08);
 
     cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    .kpi-card::before{
 
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:1px;
+
+    background:rgba(255,255,255,.12);
+
+}
 }
 
 .kpi-card:hover{
 
-    transform:translateY(-5px);
+    transform:
+    translateY(-6px)
+    scale(1.01);
 
-    border-color:#60A5FA;
+border-color:rgba(96,165,250,.45);
 
-    box-shadow:
-        0 14px 32px rgba(0,0,0,.40),
-        0 0 18px rgba(96,165,250,.18);
+box-shadow:
+    0 18px 36px rgba(0,0,0,.42),
+    0 0 22px rgba(96,165,250,.18);
 
 }
                 
@@ -141,8 +233,12 @@ hr{
 ===================================== */
 
 .chart-card{
-    background:#111c36;
-    border:1px solid #274472;
+    background:linear-gradient(
+    180deg,
+    #162445 0%,
+    #111c36 100%
+    );
+    border:1px solid rgba(96,165,250,.22);
     border-radius:18px;
     padding:20px;
     margin-bottom:20px;
@@ -160,16 +256,19 @@ hr{
         box-shadow .25s ease;
 
     box-shadow:
-        0 6px 18px rgba(0,0,0,.25);
+    0 6px 18px rgba(0,0,0,.25),
+    0 0 12px rgba(59,130,246,.08);
 
 }
 
 .deviasi-card:hover{
 
-    transform:translateY(-5px);
+    transform:
+    translateY(-6px)
+    scale(1.01);
 
-    box-shadow:
-        0 14px 32px rgba(0,0,0,.40);
+box-shadow:
+    0 18px 36px rgba(0,0,0,.42);
 
 }
 
@@ -197,16 +296,19 @@ hr{
         box-shadow .25s ease;
 
     box-shadow:
-        0 6px 18px rgba(0,0,0,.25);
+    0 6px 18px rgba(0,0,0,.25),
+    0 0 12px rgba(59,130,246,.08);
 
 }
 
 .status-card:hover{
 
-    transform:translateY(-5px);
+    transform:
+    translateY(-6px)
+    scale(1.01);
 
-    box-shadow:
-        0 14px 32px rgba(0,0,0,.40);
+box-shadow:
+    0 18px 36px rgba(0,0,0,.42);
 
 }
 
@@ -216,31 +318,53 @@ hr{
 
 .card{
 
-    background:#111c36;
-
+    background:linear-gradient(
+    180deg,
+    #162445 0%,
+    #111c36 100%
+    );
     border-radius:18px;
-
-    border:1px solid #274472;
-
+    border:1px solid rgba(96,165,250,.22);
     box-shadow:
-        0 6px 18px rgba(0,0,0,.25);
-
+    0 6px 18px rgba(0,0,0,.25),
+    0 0 12px rgba(59,130,246,.08);
     transition:
         transform .25s ease,
         box-shadow .25s ease,
         border-color .25s ease;
+    position:relative;
+    overflow:hidden;
+    .card::before{
 
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:1px;
+
+    background:rgba(255,255,255,.12);
+
+}
+                
 }
 
 .card:hover{
 
-    transform:translateY(-5px);
+    transform:
+    translateY(-6px)
+    scale(1.01);
 
-    border-color:#4f8dfd;
+border-color:rgba(96,165,250,.45);
 
-    box-shadow:
-        0 14px 32px rgba(0,0,0,.40),
-        0 0 18px rgba(79,141,253,.18);
+box-shadow:
+    0 18px 36px rgba(0,0,0,.42),
+    0 0 22px rgba(96,165,250,.18);
 
 }
 
