@@ -1,16 +1,17 @@
 import streamlit as st
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 
 def show_header():
 
-    now = datetime.now()
+    now = datetime.now(ZoneInfo("Asia/Jakarta"))
 
     tanggal = now.strftime("%d %b %Y")
     jam = now.strftime("%H:%M WIB")
 
     st.markdown(
-    f"""
+        f"""
 <div style="
 background:linear-gradient(135deg,#1e3a8a,#0f172a);
 padding:16px 28px;
